@@ -7,16 +7,16 @@ import axios from 'axios'
 
 
 global.owner = [
-  ['917605902011', 'GURU', true],
-  ['6281255369012', 'Ash', true], 
+  ['201032389641', '𝑍𝑂𝑅𝑂⚡3𝑀𝐾', true],
+  ['201032389641', '𝑍𝑂𝑅𝑂⚡3𝑀𝐾', true], 
   [''] 
 ] //Number of owners
 
 //global.pairingNumber = "" //put your bot number here
 
-global.mods = ['917605902011','32460248586'] 
-global.prems = ['917605902011', '32460248586', '919398758484']
-global.allowed = ['917605902011', '32460248586', '19152999993']
+global.mods = ['201032389641','201032389641'] 
+global.prems = ['201032389641', '201032389641', '201032389641']
+global.allowed = ['201032389641', '201032389641', '201032389641']
 global.keysZens = ['c2459db922', '37CC845916', '6fb0eff124']
 global.keysxxx = keysZens[Math.floor(keysZens.length * Math.random())]
 global.keysxteammm = ['29d4b59a4aa687ca', '5LTV57azwaid7dXfz5fzJu', 'cb15ed422c71a2fb', '5bd33b276d41d6b4', 'HIRO', 'kurrxd09', 'ebb6251cc00f9c63']
@@ -50,26 +50,25 @@ global.APIKeys = { // APIKey Here
 }
 
 // Sticker WM
-global.botname = 'ᴛʜᴇ ɢᴜʀᴜ-ʙᴏᴛ'
+global.botname = '𝒁𝑶𝑹𝑶'
 global.premium = 'true'
-global.packname = 'GURU┃ᴮᴼᵀ' 
-global.author = '@Asliguru' 
-global.menuvid = 'https://i.imgur.com/AjDzGgG.mp4'
-global.igfg = '▢ Follow on Instagram\nhttps://www.instagram.com/asli_guru69\n' 
-global.dygp = 'https://chat.whatsapp.com/BFfD1C0mTDDDfVdKPkxRAA'
-global.fgsc = 'https://github.com/Guru322/GURU-BOT' 
-global.fgyt = 'https://youtube.com/@Asliguru'
-global.fgpyp = 'https://youtube.com/@Asliguru'
-global.fglog = 'https://raw.githubusercontent.com/Guru322/api/Guru/guru.jpg' 
-global.thumb = fs.readFileSync('./Assets/Gurulogo.jpg')
+global.packname = '𝐵𝑌:𝑍𝑂𝑅𝑂⚡𝐵𝑂𝑇' 
+global.author = '𝑌𝛩𝑺𝐸𝐹⚡3𝑀𝐾' 
+global.menuvid = 'https://i.imgur.com/uiwALih.mp4'
+global.igfg = 'https://solo.to/yosef.zoro' 
+global.dygp = 'https://solo.to/yosef.zoro'
+global.fgsc = 'https://solo.to/yosef.zoro' 
+global.fgyt = 'https://youtube.com/@The-ZoroBot-MD?si=DncZQM6sKC0F6MhG'
+global.fgpyp = 'https://youtube.com/@The-ZoroBot-MD?si=DncZQM6sKC0F6MhG'
+global.fglog = 'https://solo.to/yosef.zoro' 
+global.thumb = fs.readFileSync('./Menu2.jpg')
 
-
-global.wait = '*⌛ _Charging..._*\n*▰▰▰▱▱▱▱▱*'
+global.wait = '*⌛ _انتظر..._*\n*▰▰▰▱▱▱▱▱*'
 global.rwait = '⌛'
-global.dmoji = '🤭'
+global.dmoji = '⚡'
 global.done = '✅'
 global.error = '❌' 
-global.xmoji = '🔥' 
+global.xmoji = '🔥'
 
 global.multiplier = 69 
 global.maxwarn = '3' 
