@@ -2,10 +2,11 @@
 import displayLoadingScreen from '../lib/loading.js'
 import fetch from 'node-fetch'
 import {delay} from '@whiskeysockets/baileys'
+import translate from '@vitalets/google-translate-api';
 
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
   try {
-    if (!text) throw `uhm.. what do you want to say?`
+    if (!text) throw `امم.. ماذا تريد أن تقول؟`
     m.react('🤖')
     //await displayLoadingScreen(conn, m.chat)
 
@@ -16,12 +17,16 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
     const result = await fetch(apiurl);
     const response = await result.json();
     console.log(response)
-    const textt = response.result.reply;
-    await typewriterEffect(conn,m, m.chat , textt);
+    const englishText = response.result.reply;
+
+    // ترجمة النص إلى اللغة العربية
+    const arabicTranslation = await translate(englishText, { to: 'ar' });
+
+    await typewriterEffect(conn, m, m.chat, arabicTranslation.text);
        
   } catch (error) {
     console.error(error);
-    m.reply('Oops! Something went wrong. , we are trying had to fix it asap');
+    m.reply('أُووبس! هناك خطأ ما. ، ونحن نحاول إصلاحه في أسرع وقت ممكن');
   }
 }
 handler.help = ['gemini <text>']
