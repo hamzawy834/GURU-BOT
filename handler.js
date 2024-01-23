@@ -545,46 +545,33 @@ export async function participantsUpdate({
                   pp = await this.profilePictureUrl(user, 'image');
                   ppgp = await this.profilePictureUrl(id, 'image');
                 } catch (error) {
-                  console.error(`Error retrieving profile picture: ${error}`);
-                  pp = 'https://i.imgur.com/8B4jwGq.jpeg'; // Assign default image URL
-                  ppgp = 'https://i.imgur.com/8B4jwGq.jpeg'; // Assign default image URL
+                  console.error(`حدث خطأ أثناء استرداد الصورة الشخصية: ${error}`);
+                  pp = 'https://telegra.ph/file/d37b343ee8f981be6ffba.jpg'; // Assign default image URL
+                  ppgp = 'https://telegra.ph/file/d37b343ee8f981be6ffba.jpg'; // Assign default image URL
                 } finally {
                   let text = (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user')
                     .replace('@group', await this.getName(id))
-                    .replace('@desc', groupMetadata.desc?.toString() || 'error')
+                    .replace('@desc', groupMetadata.desc?.toString() || 'لايوجد وصف')
                     .replace('@user', '@' + user.split('@')[0]);
           
                   let nthMember = groupMetadata.participants.length;
-                  let secondText = `Welcome, ${await this.getName(user)}, our ${nthMember}th member`;
+                  let secondText = `اهلا ياحب, ${await this.getName(user)}, رقم ${nthMember}العضو`;
           
-                  let welcomeApiUrl = `https://welcome.guruapi.tech/welcome-image?username=${encodeURIComponent(
+                  let welcomeApiUrl = `https://api.popcat.xyz/welcomecard?background=${encodeURIComponent(
+                    'https://telegra.ph/file/919c9aa59b8dc5cae41a8.png'
+                  )}&text1=${encodeURIComponent(
                     await this.getName(user)
-                  )}&guildName=${encodeURIComponent(await this.getName(id))}&guildIcon=${encodeURIComponent(
-                    ppgp
-                  )}&memberCount=${encodeURIComponent(
+                  )}&text2=نورت+الجروب+يحب&text3=عدد+الاعضاء:${encodeURIComponent(
                     nthMember.toString()
-                  )}&avatar=${encodeURIComponent(pp)}&background=${encodeURIComponent(
-                    'https://cdn.wallpapersafari.com/71/19/7ZfcpT.png'
-                  )}`;
+                  )}&avatar=${encodeURIComponent(pp)}`;
           
                   try {
                     let welcomeResponse = await fetch(welcomeApiUrl);
                     let welcomeBuffer = await welcomeResponse.buffer();
           
-                    this.sendMessage(id, {
-                        text: text,
-                        contextInfo: {
-                        mentionedJid: [user],
-                        externalAdReply: {
-                        title: "ᴛʜᴇ ɢᴜʀᴜ-ʙᴏᴛ",
-                        body: "welcome to Group",
-                        thumbnailUrl: welcomeApiUrl,
-                        sourceUrl: 'https://chat.whatsapp.com/BFfD1C0mTDDDfVdKPkxRAA',
-                        mediaType: 1,
-                        renderLargerThumbnail: true
-                        }}})
+                    this.sendFile(id, welcomeBuffer, 'welcome.png', text, null, false, { mentions: [user] });
                   } catch (error) {
-                    console.error(`Error generating welcome image: ${error}`);
+                    console.error(`حدث خطأ أثناء إنشاء صورة الترحيب: ${error}`);
                   }
                 }
               }
@@ -600,44 +587,31 @@ export async function participantsUpdate({
                   pp = await this.profilePictureUrl(user, 'image');
                   ppgp = await this.profilePictureUrl(id, 'image');
                 } catch (error) {
-                  console.error(`Error retrieving profile picture: ${error}`);
-                  pp = 'https://i.imgur.com/8B4jwGq.jpeg'; // Assign default image URL
-                  ppgp = 'https://i.imgur.com/8B4jwGq.jpeg'; // Assign default image URL
+                  console.error(`حدث خطأ أثناء استرداد الصورة الشخصية: ${error}`);
+                  pp = 'https://telegra.ph/file/d37b343ee8f981be6ffba.jpg'; // Assign default image URL
+                  ppgp = 'https://telegra.ph/file/d37b343ee8f981be6ffba.jpg'; // Assign default image URL
                 } finally {
-                  let text = (chat.sBye || this.bye || conn.bye || 'HELLO, @user')
+                  let text = (chat.sBye || this.bye || conn.bye || 'اهلا, @user')
                     .replace('@user', '@' + user.split('@')[0]);
           
                   let nthMember = groupMetadata.participants.length;
-                  let secondText = `Goodbye, our ${nthMember}th group member`;
+                  let secondText = `وداعا, رقم ${nthMember}عضونا`;
           
-                  let leaveApiUrl = `https://welcome.guruapi.tech/leave-image?username=${encodeURIComponent(
+                  let leaveApiUrl = `https://api.popcat.xyz/welcomecard?background=${encodeURIComponent(
+                    'https://telegra.ph/file/919c9aa59b8dc5cae41a8.png'
+                  )}&text1=${encodeURIComponent(
                     await this.getName(user)
-                  )}&guildName=${encodeURIComponent(await this.getName(id))}&guildIcon=${encodeURIComponent(
-                    ppgp
-                  )}&memberCount=${encodeURIComponent(
+                  )}&text2=الي+القاء&text3=عدد+الاعضاء:${encodeURIComponent(
                     nthMember.toString()
-                  )}&avatar=${encodeURIComponent(pp)}&background=${encodeURIComponent(
-                    'https://cdn.wallpapersafari.com/71/19/7ZfcpT.png'
-                  )}`;
+                  )}&avatar=${encodeURIComponent(pp)}`;
           
                   try {
                     let leaveResponse = await fetch(leaveApiUrl);
                     let leaveBuffer = await leaveResponse.buffer();
           
-                    this.sendMessage(id, {
-                        text: text,
-                        contextInfo: {
-                        mentionedJid: [user],
-                        externalAdReply: {
-                        title: "ᴛʜᴇ ɢᴜʀᴜ-ʙᴏᴛ",
-                        body: "Goodbye from  Group",
-                        thumbnailUrl: leaveApiUrl,
-                        sourceUrl: 'https://chat.whatsapp.com/BFfD1C0mTDDDfVdKPkxRAA',
-                        mediaType: 1,
-                        renderLargerThumbnail: true
-                        }}})
+                    this.sendFile(id, leaveBuffer, 'leave.png', text, null, false, { mentions: [user] });
                   } catch (error) {
-                    console.error(`Error generating leave image: ${error}`);
+                    console.error(`حدث خطأ أثناء إنشاء صورة الإجازة: ${error}`);
                   }
                 }
               }
@@ -813,10 +787,10 @@ export async function presenceUpdate(presenceUpdate) {
 dfail
  */
 global.dfail = (type, m, conn) => {
-    const userTag = `👋 Hai *@${m.sender.split("@")[0]}*, `
+    const userTag = `*@${m.sender.split("@")[0]}*, `
     const emoji = {
         general: '⚙️',
-        owner: '👑',
+        owner: '🐉',
         moderator: '🛡️',
         premium: '💎',
         group: '👥',
@@ -830,31 +804,28 @@ global.dfail = (type, m, conn) => {
     }
 
     const msg = {
-        owner: `*${emoji.owner} Owner's Query*\n
-    ${userTag} This command can only be used by the *Bot Owner*!`,
-        moderator: `*${emoji.moderator} Moderator's Query*\n
-    ${userTag} This command can only be used by *Moderators*!`,
-        premium: `*${emoji.premium} Premium Query*\n
-    ${userTag} This command is only for *Premium Members*!`,
-        group: `*${emoji.group} Group Query*\n
-    ${userTag} This command can only be used in *Group Chats*!`,
-        private: `*${emoji.private} Private Query*\n
-    ${userTag} This command can only be used in *Private Chats*!`,
-        admin: `*${emoji.admin} Admin's Query*\n
-    ${userTag} This command is only for *Group Admins*!`,
-        botAdmin: `*${emoji.botAdmin} Bot Admin's Query*\n
-    ${userTag} Make the bot an *Admin* to use this command!`,
-        unreg: `*${emoji.unreg} Registration Query*\n
-    ${userTag} Please register to use this feature by typing:\n\n*#register name.age*\n\nExample: *#register ${m.name}.18*!`,
-        nsfw: `*${emoji.nsfw} NSFW Query*\n
-    ${userTag} NSFW is not active. Please contact the Group admin to enable this feature!`,
-        restrict: `*${emoji.restrict} Inactive Feature Query*\n
-    ${userTag} This feature is *disabled*!`,
-    }
-     [type]
-    if (msg) return  m.reply(msg)
+        owner: `*★『${emoji.owner} امـر خـاص بـمطور الـبوت فقـط يـ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://chat.whatsapp.com/EiUizazsr6kLCwgfKJ7F5q 』*`,
+        moderator: `*★『${emoji.moderator} هـاد الامـر لـ الـمـوديـتـر فـقـط يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://chat.whatsapp.com/EiUizazsr6kLCwgfKJ7F5q 』*`,
+        premium: `*★『${emoji.premium} هـاد الامـر للبـريـميـوم فقـط يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://chat.whatsapp.com/EiUizazsr6kLCwgfKJ7F5q 』*`,
+        group: `*★『${emoji.group} هـاد الامـر يـعمل فقـط فـي المـجموعـات يـ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://chat.whatsapp.com/EiUizazsr6kLCwgfKJ7F5q 』*`,
+        private: `*★『${emoji.private} هـاد الامـر خـاص بـ البوت فقـط يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://chat.whatsapp.com/EiUizazsr6kLCwgfKJ7F5q 』*`,
+        admin: `*★『${emoji.admin} هـاد الامـر خـاص بـ ادمـن المـجمـوعه فقـط يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://chat.whatsapp.com/EiUizazsr6kLCwgfKJ7F5q 』*`,
+        botAdmin: `*★『${emoji.botAdmin} هـاد الامـر يجـب ان يـكون الـبوت مشـرف فـي المجمـوعه يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://chat.whatsapp.com/EiUizazsr6kLCwgfKJ7F5q 』*`,
+        unreg: `*★『${emoji.unreg} يـجـب ان تـكـون مـسـجـل لـي اسـتـعـمـال الامـر لـلـتـسـجـيـل اكـتـب .تسجيل ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://chat.whatsapp.com/EiUizazsr6kLCwgfKJ7F5q 』*`,
+        nsfw: `*★『${emoji.nsfw} يـمنع استعـمال الامـر يـ』*\n*لـ دخـول جـروب دعـم الـبوت➱『 https://chat.whatsapp.com/EiUizazsr6kLCwgfKJ7F5q 』*`,
+        restrict: `*★『${emoji.restrict} تـم تـعـطـيـل الامـر مـن الـمـالـك يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://chat.whatsapp.com/EiUizazsr6kLCwgfKJ7F5q 』*`,
+    };
 
-}
+    const errorMessage = msg[type];
+    if (errorMessage) {
+        conn.sendMessage(m.chat, {
+            video: { url: 'https://telegra.ph/file/04db12158ebe99b2828a1.mp4' },
+            caption: errorMessage,
+            gifPlayback: true,
+            gifAttribution: 0,
+        }, { quoted: m });
+    }
+};
 
 let file = global.__filename(import.meta.url, true)
 watchFile(file, async () => {
