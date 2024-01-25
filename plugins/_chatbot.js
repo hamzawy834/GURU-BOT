@@ -50,15 +50,15 @@ export async function before(m, { conn }) {
       
       let reply = content.parts[0].text; 
       if (reply) {
-        reply = reply.replace(/Google/gi, 'Guru');
-        reply = reply.replace(/a large language model/gi, botname);
+        reply = reply.replace(/Google/gi, 'Zoro');
+        reply = reply.replace(/نموذج لغة كبير/gi, botname);
     
     m.reply(reply);
         }
     
       } else {
         
-        m.reply("No suitable response from the API.");
+        m.reply("لا توجد استجابة مناسبة من API.");
     
       }
   } catch (error) {
