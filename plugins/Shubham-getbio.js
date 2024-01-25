@@ -6,18 +6,18 @@ let handler = async (m, { conn, text, command }) => {
     let bio = await conn.fetchStatus(who)
     m.reply(bio.status)
   } catch {
-    if (text) throw `bio is private!`
+    if (text) throw `السيرة الذاتية خاصة!`
     else try {
       let who = m.quoted ? m.quoted.sender : m.sender
       let bio = await conn.fetchStatus(who)
       m.reply(bio.status)
     } catch {
-      throw `bio is private!`
+      throw `السيرة الذاتية خاصة!`
     }
   }
 }
 handler.help = ['getbio <@tag/reply>']
 handler.tags = ['group']
-handler.command = /^(getb?io)$/i
+handler.command = /^(با?يو)$/i
 handler.limit = true
 export default handler
