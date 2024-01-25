@@ -1,14 +1,11 @@
-let handler = async (m, { conn }) => {
-  let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-  let name = conn.getName(who)
-  let pp = await conn.profilePictureUrl(who, 'image').catch(_ => './Guru.jpg')
-  conn.sendFile(m.chat, global.API('https://some-random-api.com', '/canvas/overlay/gay', {
-    avatar: pp, 
-  }), 'gay.png', `🏳️‍🌈  *Gay :* ${name}\n\nWho wants to rape this gay☠️? `, m)
-}
-
-handler.help = ['gay @user']
-handler.tags = ['fun']
-handler.command = ['gay'] 
-
-export default handler
+const handler = async (m, {conn}) => {
+  const who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
+  await conn.sendFile(m.chat, global.API('https://some-random-api.com', '/canvas/gay', {
+    avatar: await conn.profilePictureUrl(who, 'image').catch((_) => 'https://telegra.ph/file/24fa902ead26340f3df2c.png'),
+  }), 'error.png', '*احا الوان 🐧💔؟*', m);
+  await conn.sendMessage(m.chat, {audio: {url: vn}, fileName: `error.mp3`, ptt: true}, {quoted: m});
+};
+handler.help = ['gay'];
+handler.tags = ['maker'];
+handler.command = /^(الوان)$/i;
+export default handler;
