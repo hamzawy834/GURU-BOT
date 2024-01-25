@@ -1,38 +1,24 @@
-let handler = async (m, {
-    conn,
-    text,
-    args,
-    usedPrefix,
-    command
-}) => {
-    // Split the message text using the '|' character and slice the array to remove the first element.
-    let a = text.split("|").slice(1)
-    if (!a[1]) throw "Format\n" + usedPrefix + command + " hello |yes|no"
-    if (a[12]) throw "Too many options, Format\n" + usedPrefix + command + " hello |yes|no"
-    // Check for duplicate options in the poll.
-    if (checkDuplicate(a)) throw "Duplicate options in the message!"
-    let cap = "*Polling Request By* " + m.name + "\n*Message:* " + text.split("|")[0]
-
-   
-    const pollMessage = {
-        name: cap,
-        values: a,
-        multiselect: false,
-        selectableCount: 1
+const handler = async (m, {conn, text, args, usedPrefix, command}) => {
+  let name = await conn.getName(m.sender);
+  if (name == 'undefined') name = 'Indefinido';
+  const b = text.split('|');
+  if (!b[1]) throw `*[❗] صيغة الاستخدام ${usedPrefix + command} سؤال؟ |خيار1|خيار2...*`;
+  if (b[12]) throw `*[❗] صيغة الاستخدام ${usedPrefix + command} سؤال؟ |خيار1|خيار2...*`;
+  const caption = `*استطلاع أجابة بواسطة:*\n${name}\n*السؤال:*\n${text.split('|')[0]}`.trim();
+  const options = text.split("|").slice(1).map(option => ({ optionName: option.trim() }));  
+  const sendPollMessage = {
+    messageContextInfo: {
+        messageSecret: "bT3tfZngfSMWK2zOEL8pSclPG+xldidYDX+ybB8vdEw="
+    },
+    pollCreationMessage: {
+        name: caption,
+        options: options,
+        selectableOptionsCount: 1,
     }
-  
-    await conn.sendMessage(m.chat, {
-        poll: pollMessage
-    })
-}
-
-handler.help = ["poll question|option|option"]
-handler.tags = ["group"]
-handler.command = /^po(l((l?ing|ls)|l)|ols?)$/i
-
-export default handler
-
-// Function to check for duplicate elements in an array.
-function checkDuplicate(arr) {
-    return new Set(arr).size !== arr.length
-}
+  };
+conn.relayMessage(m.chat, sendPollMessage, {quoted: m});
+};
+handler.help = ['encuesta question|option|option'];
+handler.tags = ['group'];
+handler.command = ['استطلاع', 'encuesta'];
+export default handler;
