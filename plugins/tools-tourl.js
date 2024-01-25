@@ -7,13 +7,13 @@ let handler = async (m) => {
   let mime = (q.msg || q).mimetype || '';
   
   if (!mime) {
-    throw '✳️ Respond to an image/video';
+    throw '✳️ رد على صورة/فيديو';
   }
   let mediaBuffer = await q.download();
 
  
   if (mediaBuffer.length > 10 * 1024 * 1024) {
-    throw '✴️ Media size exceeds 10 MB. Please upload a smaller file.';
+    throw '✴️ حجم الوسائط يتجاوز 10 ميغابايت. الرجاء تحميل ملف أصغر.';
   }
 
   let currentModuleDirectory = path.dirname(new URL(import.meta.url).pathname);
@@ -33,10 +33,10 @@ let handler = async (m) => {
 
     const fileSizeMB = (mediaBuffer.length / (1024 * 1024)).toFixed(2);
 
-    m.reply(`✅ *Media Upload Successful*\n♕ *File Size:* ${fileSizeMB} MB\n♕ *URL:* ${link}`);
+    m.reply(`✅ *تحميل الوسائط بنجاح*\n♕ *حجم الملف:* ${fileSizeMB} ميغابايت\n♕ *الرابط يبروو🐉:* ${link}`);
   } else {
     m.reply(`♕ ${mediaBuffer.length} Byte(s) 
-    ♕ (Unknown)`);
+    ♕ (غير معروف)`);
   }
 
   fs.unlinkSync(mediaPath);
@@ -44,6 +44,6 @@ let handler = async (m) => {
 
 handler.help = ['tourl'];
 handler.tags = ['tools'];
-handler.command = ['url', 'tourl'];
+handler.command = ['لرابط', 'تحويل-رابط'];
 
 export default handler;
