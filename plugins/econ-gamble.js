@@ -14,14 +14,14 @@ const resolveRoulette = (chatId, conn) => {
     
     let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
     let username = conn.getName(who)
-    if (!(who in global.db.data.users)) throw `✳️ The user is not found in my database`
+    if (!(who in global.db.data.users)) throw `✳️ المستخدم غير موجود في قاعدة البيانات`
 
     if (rouletteBets[chatId] && rouletteBets[chatId].length > 0) {
         let colores = ['red', 'black'];
         let colour = colores[Math.floor(Math.random() * colores.length)];
 
         let winners = [];
-        let resultMessage = `The ball landed on ${colour}\n\n🎉 Winners 🎉\n\n`;
+        let resultMessage = `الكرة هبطت على ${colour}\n\n🎉 الفائزين 🎉\n\n`;
 
         for (let bet of rouletteBets[chatId]) {
             let result = '';
@@ -37,7 +37,7 @@ const resolveRoulette = (chatId, conn) => {
 
         resultMessage += winners.join('\n');
         if (winners.length === 0) {
-            resultMessage += 'No winners';
+            resultMessage += 'لا يوجد فائزين';
         }
 
         rouletteResult[chatId] = resultMessage;
@@ -60,30 +60,30 @@ const runRoulette = (chatId, conn) => {
 const betRoulette = (user, chatId, amount, color) => {
     let colores = ['red', 'black'];
     if (isNaN(amount) || amount < 500) {
-        throw `✳️ The minimum bet is 500 gold`;
+        throw `✳️ الحد الأدنى للرهان هو 500 ذهب`;
     }
     if (!colores.includes(color)) {
-        throw '✳️ You must specify a valid color: red or black';
+        throw '✳️ يجب عليك تحديد لون صالح: أحمر أو أسود';
     }
     if (users.credit < amount) {
-        throw '✳️ You do not have enough gold!';
+        throw '✳️ ليس لديك ما يكفي من الذهب!';
     }
     if (amount > 100000) {
-        throw `🟥 You can't bet gold more than 100000`;
+        throw `🟥 لا يمكنك المراهنة بمبلغ أكثر من 100000`;
     }
 
     if (!rouletteBets[chatId]) {
         rouletteBets[chatId] = [];
     }
     rouletteBets[chatId].push({ user, amount, color });
-    return `✅ Your bet of ${amount} gold on ${color} has been placed!`;
+    return `✅ تم وضع رهانك بقيمة ${amount} ذهب على لون ${color}!`;
 };
 
 //const handler = async (m, { conn, args, usedPrefix, command }) => {
     let amount = parseInt(args[0]);
     let color = args[1]?.toLowerCase();
     if (args.length < 2) {
-        throw `✳️ Command Usage: ${usedPrefix + command} <amount> <color>\n\n Example: ${usedPrefix + command} 500 red`;
+        throw `✳️ طريقة استخدام الأمر: ${usedPrefix + command} <المبلغ> <اللون>\n\n مثال: ${usedPrefix + command} 500 أحمر`;
     }
 
     let users = global.db.data.users[m.sender];
@@ -95,7 +95,7 @@ const betRoulette = (user, chatId, amount, color) => {
 
 handler.help = ['gamble <amount> <color(red/black)>'];
 handler.tags = ['economy'];
-handler.command = ['gamble'];
+handler.command = ['رهان'];
 
 handler.group = true;
 
