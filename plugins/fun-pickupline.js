@@ -1,28 +1,32 @@
 import fetch from 'node-fetch';
+import translate from '@vitalets/google-translate-api';
 
-let pickupLineHandler = async (m, { conn, text }) => {
+let yoMamaJokeHandler = async (m, { conn, text }) => {
   try {
     let res = await fetch(`https://api.popcat.xyz/pickuplines`);
 
     if (!res.ok) {
-      throw new Error(`API request failed with status ${res.status}`);
+      throw new Error(`فشل طلب API مع الحالة ${res.status}`);
     }
 
     let json = await res.json();
 
     console.log('JSON response:', json);
 
-    let pickupLine = `*Here's a pickup line for you:*\n\n"${json.pickupline}"\n\nContributor: ${json.contributor}`;
+    let yoMamaJoke = `${json.pickupline}`;
+    
+    let translation = await translate(yoMamaJoke, { to: 'ar' });
 
-    m.reply(pickupLine);
+    let translatedYoMamaJoke = translation.text;
+
+    m.reply(translatedYoMamaJoke);
   } catch (error) {
     console.error(error);
-    // Handle the error appropriately
   }
 };
 
-pickupLineHandler.help = ['pickupline'];
-pickupLineHandler.tags = ['fun'];
-pickupLineHandler.command = /^(pickupline|pickup)$/i;
+yoMamaJokeHandler.help = ['yomamajoke'];
+yoMamaJokeHandler.tags = ['fun'];
+yoMamaJokeHandler.command = /^(هبد)$/i;
 
 export default pickupLineHandler;
