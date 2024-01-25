@@ -1,7 +1,7 @@
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     let regex = /x/g
-    if (!text) throw 'Give a number to search'
-    if (!text.match(regex)) throw `*Example: ${usedPrefix + command} 91760590201x*`
+    if (!text) throw 'قدّم رقمًا للبحث'
+    if (!text.match(regex)) throw `*مثال: ${usedPrefix + command} 91760590201x*`
     let random = text.match(regex).length, total = Math.pow(10, random), array = []
     for (let i = 0; i < total; i++) {
     let list = [...i.toString().padStart(random, '0')]
@@ -12,7 +12,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     } else {
     array.push({ exists: false, jid: result })
     }}
-    let txt = 'Registered\n\n' + array.filter(v => v.exists).map(v => `• Link: wa.me/${v.jid.split('@')[0]}\n*• Bio:* ${v.status || 'descripiion'}\n*• set on:* ${formatDate(v.setAt)}`).join('\n\n') + '\n\n*Not registered*\n\n' + array.filter(v => !v.exists).map(v => v.jid.split('@')[0]).join('\n')
+    let txt = 'تم التسجيل\n\n' + array.filter(v => v.exists).map(v => `• رابط: wa.me/${v.jid.split('@')[0]}\n*• الحالة:* ${v.status || 'الوصف'}\n*• تاريخ التعيين:* ${formatDate(v.setAt)}`).join('\n\n') + '\n\n*لم يتم التسجيل*\n\n' + array.filter(v => !v.exists).map(v => v.jid.split('@')[0]).join('\n')
     m.reply(txt)
     }
     handler.help = ['nowa']
