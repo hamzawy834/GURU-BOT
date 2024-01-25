@@ -1,20 +1,32 @@
-import fetch from 'node-fetch'
-let handler  = async (m, { conn }) => {
-    let shizokeys = 'shizo'	
-  let res = await fetch(`https://shizoapi.onrender.com/api/texts/shayari?apikey=${shizokeys}`)
-  if (!res.ok) throw await res.text()
-	    let json = await res.json()
+import fetch from 'node-fetch';
+import translate from '@vitalets/google-translate-api';
 
-  let guru = `${json.result}`
-  conn.sendMessage(m.chat, { text: guru, mentions: [m.sender] }, { quoted: m })
-}
-handler.help = ['shayari']
-handler.tags = ['fun']
-handler.command = /^(shayari)$/i
+let yoMamaJokeHandler = async (m, { conn, text }) => {
+  try {
+    let res = await fetch(`https://shizoapi.onrender.com/api/texts/shayari?apikey=shizo`);
 
-export default handler
+    if (!res.ok) {
+      throw new Error(`فشل طلب API مع الحالة ${res.status}`);
+    }
 
+    let json = await res.json();
 
-function pickRandom(list) {
-  return list[Math.floor(list.length * Math.random())]
-}
+    console.log('JSON response:', json);
+
+    let yoMamaJoke = `${json.result}`;
+    
+    let translation = await translate(yoMamaJoke, { to: 'ar' });
+
+    let translatedYoMamaJoke = translation.text;
+
+    m.reply(translatedYoMamaJoke);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+yoMamaJokeHandler.help = ['yomamajoke'];
+yoMamaJokeHandler.tags = ['fun'];
+yoMamaJokeHandler.command = /^(شعر)$/i;
+
+export default yoMamaJokeHandler;
