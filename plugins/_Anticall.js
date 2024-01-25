@@ -11,17 +11,17 @@ export async function before(m, { conn, isAdmin, isBotAdmin, isOwner, isROwner }
 
   // Define different message types and their corresponding messages.
   const messageType = {
-    40: '📞 You missed a voice call, and the call has been missed.',
-    41: '📹 You missed a video call, and the call has been missed.',
-    45: '📞 You missed a group voice call, and the call has been missed.',
-    46: '📹 You missed a group video call, and the call has been missed.'
+        40: '📞 لقد فاتك مكالمة صوتية، وتم تفويت الاتصال.',
+        41: '📹 لقد فاتك مكالمة فيديو، وتم تفويت الاتصال.',
+        45: '📞 لقد فاتك مكالمة صوتية في المجموعة، وتم تفويت الاتصال.',
+        46: '📹 لقد فاتك مكالمة فيديو في المجموعة، وتم تفويت الاتصال.'
   }[m.messageStubType];
 
   // If a message type is found, send a message to the chat.
   if (messageType) {
     // Send a message mentioning the sender and the message type.
    
-    await this.sendMessage(m.chat, { text: `You are banned + blocked for calling the bot`, mentions: [m.sender] });
+    await this.sendMessage(m.chat, { text: `تم حظرك + حظرك من الاتصال بالبوت`, mentions: [m.sender] });
     
    
 
@@ -35,7 +35,7 @@ export async function before(m, { conn, isAdmin, isBotAdmin, isOwner, isROwner }
 
     // Block the user from sending messages to the bot.
    
-    await this.updateBlockStatus(m.sender, "block");
+    await this.updateBlockStatus(m.sender, "ابلع بلوك");
 
     // If the message is from a group, remove the sender from the group.
     if (m.isGroup) {
