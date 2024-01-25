@@ -3,7 +3,7 @@ import displayLoadingScreen from '../lib/loading.js';
 let handler = async (m, { conn, text }) => {
     if (!text) {
         console.log('No song name provided.');
-        throw `*Please enter a song name*`;
+        throw `*الرجاء إدخال اسم الأغنية*`;
     }
   m.react('🎶')
   await displayLoadingScreen(conn, m.chat);
@@ -18,13 +18,13 @@ let handler = async (m, { conn, text }) => {
         mimetype: 'audio/mpeg',
         ptt: true,
         waveform:  [100, 0, 100, 0, 100, 0, 100],
-        fileName: "Guru.mp3",
+        fileName: "Zoro.mp3",
     
         contextInfo: {
           mentionedJid: [m.sender],
           externalAdReply: {
             title: "↺ |◁   II   ▷|   ♡",
-            body: `Now playing: ${text}`,
+            body: `الان اسمع: ${text}`,
             thumbnailUrl: pp,
             sourceUrl: null,
             mediaType: 1,
@@ -37,6 +37,6 @@ let handler = async (m, { conn, text }) => {
 }
 handler.help = ['spotify'];
 handler.tags = ['downloader'];
-handler.command = /^(spotify|song)$/i;
+handler.command = /^(spotify|سبوتي-فاي|song)$/i;
 
 export default handler;
