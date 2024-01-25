@@ -11,13 +11,17 @@ export async function before(m, { conn }) {
     user.role = global.rpg.role(user.level).name
     if (before !== user.level) {
         m.reply(`
-*▢ LEVEL UP*
+🌟 *مبروك!* 🌟
+تمت إرتقاؤك إلى المستوى *${user.level}*! 🚀
 
- *${before}* ‣  *${user.level}*
- ROLE : *${user.role}*
- 
- _to deactivate write_
-_*/off autolevelup*_
+*${before}* كان المستوى القديم، والآن أنت في المستوى *${user.level}*! 🌠
+
+*${user.role}* أصبح دورك الجديد! 🛡️
+
+⚡استمر في العمل الجاد والتفاعل مع زورو لتصبح أقوى! 💪
+
+_لتعطيل هذه الميزة_
+أرسل */تعطيل autolevelup*
 	`.trim())
     }
 }
