@@ -1,20 +1,31 @@
 import fetch from 'node-fetch';
+import translate from '@vitalets/google-translate-api';
 
 let yoMamaJokeHandler = async (m, { conn, text }) => {
   try {
-    let res = await fetch(`https://yomamaindra.onrender.com/jokes`);
+    let factResponse = await fetch(`https://nekos.life/api/v2/fact`);
+    let nameResponse = await fetch(`https://nekos.life/api/v2/name`);
 
-    if (!res.ok) {
-      throw new Error(`API request failed with status ${res.status}`);
+    if (!factResponse.ok || !nameResponse.ok) {
+      throw new Error(`فشل طلب API مع الحالة ${factResponse.status} و ${nameResponse.status}`);
     }
 
-    let json = await res.json();
+    let factJson = await factResponse.json();
+    let nameJson = await nameResponse.json();
+    
+    console.log('Fact JSON response:', factJson);
+    console.log('Name JSON response:', nameJson);
 
-    console.log('JSON response:', json);
+    let yoMamaJoke = `${factJson.fact}`;
+    let translatedName = `${nameJson.name}`;
+    
+    let translation = await translate(yoMamaJoke, { to: 'ar' });
+    let translatedYoMamaJoke = `*❐⟣┈┈┈⟢╊⊰🐉⊱╉⟣┈┈┈⟢❐*
+*❐↞┇حـقيـقه📖 ↞ ${translation.text}.┇*
+*❐↞┇الـكـاتـب🖋 ↞ ${translatedName}.┇*
+*❐⟣┈┈┈⟢╊⊰🐉⊱╉⟣┈┈┈⟢❐*`;
 
-    let yoMamaJoke = `${json.joke}`;
-
-    m.reply(yoMamaJoke);
+    m.reply(translatedYoMamaJoke);
   } catch (error) {
     console.error(error);
   }
@@ -22,6 +33,6 @@ let yoMamaJokeHandler = async (m, { conn, text }) => {
 
 yoMamaJokeHandler.help = ['yomamajoke'];
 yoMamaJokeHandler.tags = ['fun'];
-yoMamaJokeHandler.command = /^(yomamajoke|yomama|terimummy)$/i;
+yoMamaJokeHandler.command = /^(اقتباس2|حقيقه|مثابره)$/i;
 
 export default yoMamaJokeHandler;
