@@ -2,18 +2,18 @@
 let handler = async (m, { conn, usedPrefix, command, args: [event], text }) => {
 
   let chat = global.db.data.chats[m.chat]
-  if (!chat.welcome) throw `✳️ To use this command you must activate the Welcomes with *${usedPrefix}on* welcome`
+  if (!chat.welcome) throw `✳️ لاستخدام هذا الأمر، يجب تفعيل الترحيب بواسطة *${usedPrefix}تشغيل* الترحيب`
   let te = `
-  ┌─⊷ *EVENTS*
-  ▢ welcome
-  ▢ bye
-  ▢ promote
-  ▢ demote
+   ┌─⊷ *التجارب*
+  ▢ الترحيب
+  ▢ المغادره
+  ▢ رفع
+  ▢ خفض
   └───────────
   
-  📌 Example :
+  📌 مثال :
   
-  *${usedPrefix + command}* welcome @user`
+  *${usedPrefix + command}* الترحيب @منشن`
 
 if (!event) return await m.reply(te) 
 
@@ -26,22 +26,22 @@ switch (event.toLowerCase()) {
         case 'add':
         case 'bienvenida':
         case 'invite':
-        case 'welcome':
+        case 'الترحيب':
            act = 'add'
          break 
-        case 'bye':
+        case 'المغادره':
         case 'despedida':
-        case 'leave':
+        case 'المغادره':
         case 'remove':
          act = 'remove'
         break
 
-        case 'promote':
+        case 'رفع':
         case 'promover':
           act = 'promote'
         break
 
-        case 'demote':
+        case 'خفض':
         case 'degradar':
          act = 'demote'
         break
@@ -58,7 +58,7 @@ action: act
 }
 handler.help = ['simulate <event> @user']
 handler.tags = ['group']
-handler.command = ['simular', 'simulate'] 
+handler.command = ['تجربه', 'simulate'] 
 handler.admin = true
 handler.group = true
 
