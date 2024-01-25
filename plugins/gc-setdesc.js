@@ -1,10 +1,10 @@
 let handler = async (m, { conn, args }) => {
     await conn.groupUpdateDescription(m.chat, `${args.join(" ")}`);
-    m.reply('*✅Success changing The description of the group*')
+    m.reply('*✅ تم تعديل الوصف بنجاح*')
     }
     handler.help = ['Setdesc <text>']
     handler.tags = ['group']
-    handler.command = /^setdesk|setdesc$/i
+    handler.command = /^تغيرالوصف|تغير-الوصف$/i
     handler.group = true
     handler.admin = true
     handler.botAdmin = true
