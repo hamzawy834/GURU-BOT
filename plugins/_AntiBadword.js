@@ -1,4 +1,4 @@
-const isToxic = /(gandu|maderchod|bhosdike|bhosda|laud?a|chut?iya|maa ki chut|behenchod|behen ki chut|tatto ke saudagar|machar ki jhant|jhant? ka baal|Rand?i ka aulad|chuchi|booob?ie?s|to?lo?l|idiot|nigga|fuck|dick|bitch|tits|bastard|asshole|a[su,w,yu])/i;
+const isToxic = /(زب|سكس|طيز|كس|خول|عرص|متناك|xnxx|xxx|عرص)/i;
 
 import axios from "axios"
 import fetch from "node-fetch"
@@ -24,12 +24,12 @@ export async function before(m, { isAdmin, isBotAdmin }) {
             "☠️  ☠️  ☠️  ☠️  ☠️"   // Extremely toxic!
         ];
         var toxicityVerdict = [
-            "You are so friendly. Very welcoming to know you!",
-            "You are not too toxic, is it fun?",
-            "You appear to be toxic. Calm down!",
-            "Don't be so toxic. You can relax!",
-            "There's nothing more I could say, you're totally the most toxic person in the world!",
-            "Your toxic meter also goes above 100%."
+            "اهدا ممنوع السب!",
+            "عيب يعم انت",
+            "خخخ م تحترم نفسك!",
+            "عيب الكلام دا ي شباب والله!",
+            "فين الادمن يطردوه او يعطوه انذار!",
+            "يخول امتا هتكبر."
         ];
 
         const toxicityPercentage = Number(analysisResult.toxicity * 100).toFixed(2)
@@ -48,9 +48,9 @@ export async function before(m, { isAdmin, isBotAdmin }) {
             toxicityIndex = 5
         }
 
-        var caption = `*[ TOXIC STRENGTH ]*\n\n${toxicityLevels[toxicityIndex]}\n${toxicityVerdict[toxicityIndex]}\n`
+        var caption = `*[ الكلام الزفت ]*\n\n${toxicityLevels[toxicityIndex]}\n${toxicityVerdict[toxicityIndex]}\n`
         
-        await this.reply(m.chat, `*Bad Words Detected!*\n ${caption} ${isBotAdmin ? '' : '\n\n_Bot is not admin_'}`, m)
+        await this.reply(m.chat, `*في كلام زي الزفت اتقال!*\n ${caption} ${isBotAdmin ? '' : '\n\n_عايز اشراف اطرد ابن المرا_'}`, m)
 
         if (isBotAdmin) {
             // Remove the participant from the group
@@ -66,9 +66,9 @@ async function Analyze(text) {
         const result = await axios.post("https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyDh6d2S3S4zOuZSgyySRcnj8uZMNJ6kdFQ", {
             comment: {
                 text: text,
-                type: 'PLAIN_TEXT'
+                type: 'نص عادي'
             },
-            languages: ['en'],
+            languages: ['ar'],
             requestedAttributes: { SEVERE_TOXICITY: {}, INSULT: {} }
         });
         return { toxicity: result.data.attributeScores.SEVERE_TOXICITY.summaryScore.value, insult: result.data.attributeScores.INSULT.summaryScore.value, combined: (result.data.attributeScores.SEVERE_TOXICITY.summaryScore.value + result.data.attributeScores.INSULT.summaryScore.value) / 2 };
