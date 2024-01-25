@@ -3,12 +3,12 @@
 let handler = async (m, { conn, text, isROwner, isOwner }) => {
   if (text) {
     global.db.data.chats[m.chat].sWelcome = text
-    m.reply('✅ The welcome message is configured')
-  } else throw `✳️ Enter the Welcome message\n\n@user (mention)\n@group (Group name)\n@desc (description of group)`
+    m.reply('*[✅] تم تغير الترحيب يحب*')
+  } else throw `*[❗] ادخل رساله الترحيب الذي تريدها, مثال:*\n*❈↲ .تغير-الترحيب اهلا بك في مجموعتنا*\n*- @user (منشن)*\n*- @group (اسم الجروب)*\n*- @desc (الوصف)*`
 }
 handler.help = ['setwelcome <text>']
 handler.tags = ['group']
-handler.command = ['setwelcome'] 
+handler.command = ['تغيرالترحيب'] 
 handler.admin = true
 handler.owner = false
 
