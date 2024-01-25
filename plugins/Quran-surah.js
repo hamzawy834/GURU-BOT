@@ -7,7 +7,7 @@ let quranSurahHandler = async (m, { conn }) => {
     let surahInput = m.text.split(' ')[1];
 
     if (!surahInput) {
-      throw new Error(`Please specify the surah number or name`);
+      throw new Error(`يرجى تحديد رقم السورة أو اسمها`);
     }
 
     let surahListRes = await fetch('https://quran-endpoint.vercel.app/quran');
@@ -20,14 +20,14 @@ let quranSurahHandler = async (m, { conn }) => {
     );
 
     if (!surahData) {
-      throw new Error(`Couldn't find surah with number or name "${surahInput}"`);
+      throw new Error(`لم يتم العثور على السورة برقم أو اسم "${surahInput}"`);
     }
 
     let res = await fetch(`https://quran-endpoint.vercel.app/quran/${surahData.number}`);
     
     if (!res.ok) {
       let error = await res.json(); 
-      throw new Error(`API request failed with status ${res.status} and message ${error.message}`);
+      throw new Error(`فشل طلب API برمز الحالة ${res.status} ورسالة ${error.message}`);
     }
 
     let json = await res.json();
@@ -36,16 +36,16 @@ let quranSurahHandler = async (m, { conn }) => {
     let translatedTafsirUrdu = await translate(json.data.tafsir.id, { to: 'ur', autoCorrect: true });
 
     // Translate tafsir from Bahasa Indonesia to English
-    let translatedTafsirEnglish = await translate(json.data.tafsir.id, { to: 'en', autoCorrect: true });
+    let translatedTafsirEnglish = await translate(json.data.tafsir.id, { to: 'ar', autoCorrect: true });
 
     let quranSurah = `
-🕌 *Quran: The Holy Book*\n
-📜 *Surah ${json.data.number}: ${json.data.asma.ar.long} (${json.data.asma.en.long})*\n
-Type: ${json.data.type.en}\n
-Number of verses: ${json.data.ayahCount}\n
-🔮 *Explanation (Urdu):*\n
+🕌 *القرآن: الكتاب المقدس*\n
+📜 *سورة ${json.data.number}: ${json.data.asma.ar.long} (${json.data.asma.en.long})*\n
+النوع: ${json.data.type.en}\n
+عدد الآيات: ${json.data.ayahCount}\n
+🔮 *التفسير (بالأردية):*\n
 ${translatedTafsirUrdu.text}\n
-🔮 *Explanation (English):*\n
+🔮 *التفسير (بالعربيه):*\n
 ${translatedTafsirEnglish.text}`;
 
     m.reply(quranSurah);
@@ -61,7 +61,7 @@ ${translatedTafsirEnglish.text}`;
 
 quranSurahHandler.help = ['quran [surah_number|surah_name]'];
 quranSurahHandler.tags = ['quran', 'surah'];
-quranSurahHandler.command = ['quran', 'surah']
+quranSurahHandler.command = ['quran', 'سوره']
 
 export default quranSurahHandler;
 
