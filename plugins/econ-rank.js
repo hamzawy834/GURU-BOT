@@ -4,9 +4,9 @@ import Canvacord from 'canvacord';
 let handler = async (m, { conn }) => {
   let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
 
-  if (!(who in global.db.data.users)) throw `✳️ The user is not found in my database`;
+  if (!(who in global.db.data.users)) throw `✳️ المستخدم غير موجود في قاعدة البيانات`;
 
-  let pp = await conn.profilePictureUrl(who, 'image').catch(_ => './Guru.jpg');
+  let pp = await conn.profilePictureUrl(who, 'image').catch(_ => './Menu2.jpg');
   let user = global.db.data.users[who];
   let { exp, level, role } = global.db.data.users[who];
   let { min, xp } = xpRange(user.level, global.multiplier);
@@ -28,11 +28,11 @@ let handler = async (m, { conn }) => {
   .setOverlay('#000000')
   .setUsername(username)
   .setBackground('IMAGE', customBackground)
-  .setRank(level, 'LEVEL', false)
+  .setRank(level, 'المستوي', false)
   .renderEmojis(true)
   .build();
 
-  const str = `🏮 *Username:* ${username}\n\n⭐ *Experience:* ${crxp} / ${requiredXpToLevelUp}\n\n🏅 *Rank:* *${role}*`
+  const str = `🏮 *الاسم:* ${username}\n\n⭐ *خبرة:* ${crxp} / ${requiredXpToLevelUp}\n\n🏅 *رتبة:* *${role}*`
 
   try {
     conn.sendFile(m.chat, card, 'rank.jpg', str, m, false, { mentions: [who] });
@@ -43,6 +43,6 @@ let handler = async (m, { conn }) => {
 
 handler.help = ['rank'];
 handler.tags = ['economy'];
-handler.command = ['rank'];
+handler.command = ['رانك'];
 
 export default handler;
