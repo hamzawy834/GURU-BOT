@@ -18,19 +18,19 @@ let { code, msg } = res.status
 if (code !== 0) throw msg
 let { title, artists, album, genres, release_date } = res.metadata.music[0]
 let txt = `
-𝚁𝙴𝚂𝚄𝙻𝚃
-• 📌 *TITLE*: ${title}
-• 👨‍🎤 𝙰𝚁𝚃𝙸𝚂𝚃: ${artists !== undefined ? artists.map(v => v.name).join(', ') : 'NOT FOUND'}
-• 💾 𝙰𝙻𝙱𝚄𝙼: ${album.name || 'NOT FOUND'}
-• 🌐 𝙶𝙴𝙽𝙴𝚁: ${genres !== undefined ? genres.map(v => v.name).join(', ') : 'NOT FOUND'}
-• 📆 RELEASE DATE: ${release_date || 'NOT FOUND'}
+النتيجه
+• 📌 *العنوان*: ${title}
+• 👨‍🎤 المغني: ${artists !== undefined ? artists.map(v => v.name).join(', ') : 'لم يتم العثور'}
+• 💾 اسم الاغنيه: ${album.name || 'لم يتم العثور'}
+• 🌐 الجنرال: ${genres !== undefined ? genres.map(v => v.name).join(', ') : 'لم يتم العثور'}
+• 📆 تاريخ الإصدار: ${release_date || 'لم يتم العثور'}
 `.trim()
 fs.unlinkSync(`./tmp/${m.sender}.${ext}`)
 m.reply(txt)
-} else throw '*𝚁𝙴𝚂𝙿𝙾𝙽𝙳 𝙰𝚄𝙳𝙸𝙾*'
+} else throw '*❗الرد بالصوت*'
 }
 
 handler.help = ['shazam']
 handler.tags = ['tools']
-handler.command = /^quemusica|shazam|whatmusic$/i
+handler.command = /^quemusica|الاسم|الأسم$/i
 export default handler
