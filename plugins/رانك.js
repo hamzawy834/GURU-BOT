@@ -29,6 +29,6 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 
 handler.help = ['profile'];
 handler.tags = ['group'];
-handler.command = ['رانك'];
+handler.command = ['ران'];
 
 export default handler;
