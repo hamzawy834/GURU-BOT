@@ -7,16 +7,16 @@ import axios from 'axios'
 
 
 global.owner = [
-  ['201032389641', '𝑍𝑂𝑅𝑂⚡3𝑀𝐾', true],
-  ['201032389641', '𝑍𝑂𝑅𝑂⚡3𝑀𝐾', true], 
+  ['212697300299', '𝐒𝐇𝐀𝐍𝐊𝐒⚡3𝐌𝐊', true],
+  ['212697300299', '𝐒𝐇𝐀𝐍𝐊𝐒⚡3𝐌𝐊', true], 
   [''] 
 ] //Number of owners
 
 //global.pairingNumber = "" //put your bot number here
 
-global.mods = ['201032389641','201032389641'] 
-global.prems = ['201032389641', '201032389641', '201032389641']
-global.allowed = ['201032389641', '201032389641', '201032389641']
+global.mods = ['212697300299','212697300299'] 
+global.prems = ['212697300299', '212697300299', '212697300299']
+global.allowed = ['212697300299', '212697300299', '212697300299']
 global.keysZens = ['c2459db922', '37CC845916', '6fb0eff124']
 global.keysxxx = keysZens[Math.floor(keysZens.length * Math.random())]
 global.keysxteammm = ['29d4b59a4aa687ca', '5LTV57azwaid7dXfz5fzJu', 'cb15ed422c71a2fb', '5bd33b276d41d6b4', 'HIRO', 'kurrxd09', 'ebb6251cc00f9c63']
@@ -52,8 +52,8 @@ global.APIKeys = { // APIKey Here
 // Sticker WM
 global.botname = '𝒁𝑶𝑹𝑶'
 global.premium = 'true'
-global.packname = '𝐵𝑌:𝑍𝑂𝑅𝑂⚡𝐵𝑂𝑇' 
-global.author = '𝑌𝛩𝑺𝐸𝐹⚡3𝑀𝐾' 
+global.packname = 'شانكس عمك' 
+global.author = 'شانكس عمك' 
 global.menuvid = 'https://i.imgur.com/uiwALih.mp4'
 global.igfg = 'https://solo.to/yosef.zoro' 
 global.dygp = 'https://solo.to/yosef.zoro'
