@@ -804,16 +804,16 @@ global.dfail = (type, m, conn) => {
     }
 
     const msg = {
-        owner: `*★『${emoji.owner} امـر خـاص بـمطور الـبوت فقـط يـ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『  』*`,
-        moderator: `*★『${emoji.moderator} هـاد الامـر لـ الـمـوديـتـر فـقـط يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『  』*`,
-        premium: `*★『${emoji.premium} هـاد الامـر للبـريـميـوم فقـط يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『  』*`,
-        group: `*★『${emoji.group} هـاد الامـر يـعمل فقـط فـي المـجموعـات يـ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『  』*`,
-        private: `*★『${emoji.private} هـاد الامـر خـاص بـ البوت فقـط يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『  』*`,
-        admin: `*★『${emoji.admin} هـاد الامـر خـاص بـ ادمـن المـجمـوعه فقـط يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『  』*`,
-        botAdmin: `*★『${emoji.botAdmin} هـاد الامـر يجـب ان يـكون الـبوت مشـرف فـي المجمـوعه يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『  』*`,
-        unreg: `*★『${emoji.unreg} يـجـب ان تـكـون مـسـجـل لـي اسـتـعـمـال الامـر لـلـتـسـجـيـل اكـتـب .تسجيل ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『  』*`,
-        nsfw: `*★『${emoji.nsfw} يـمنع استعـمال الامـر يـ』*\n*لـ دخـول جـروب دعـم الـبوت➱『  』*`,
-        restrict: `*★『${emoji.restrict} تـم تـعـطـيـل الامـر مـن الـمـالـك يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『  』*`,
+        owner: `*★『${emoji.owner} امـر خـاص بـمطور الـبوت فقـط يـ${userTag}』*\n*تواصل مع المطور على انستا:https://www.instagram.com/hyouka_hotaro?igsh=MWFmc2dmdTllaTE1NA==`,
+        moderator: `*★『${emoji.moderator} هـاد الامـر لـ الـمـوديـتـر فـقـط يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『https://www.instagram.com/hyouka_hotaro?igsh=MWFmc2dmdTllaTE1NA==  』*`,
+        premium: `*★『${emoji.premium} هـاد الامـر للبـريـميـوم فقـط يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://www.instagram.com/hyouka_hotaro?igsh=MWFmc2dmdTllaTE1NA== 』*`,
+        group: `*★『${emoji.group} هـاد الامـر يـعمل فقـط فـي المـجموعـات يـ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://www.instagram.com/hyouka_hotaro?igsh=MWFmc2dmdTllaTE1NA== 』*`,
+        private: `*★『${emoji.private} هـاد الامـر خـاص بـ البوت فقـط يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://www.instagram.com/hyouka_hotaro?igsh=MWFmc2dmdTllaTE1NA== 』*`,
+        admin: `*★『${emoji.admin} هـاد الامـر خـاص بـ ادمـن المـجمـوعه فقـط يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://www.instagram.com/hyouka_hotaro?igsh=MWFmc2dmdTllaTE1NA== 』*`,
+        botAdmin: `*★『${emoji.botAdmin} هـاد الامـر يجـب ان يـكون الـبوت مشـرف فـي المجمـوعه يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://www.instagram.com/hyouka_hotaro?igsh=MWFmc2dmdTllaTE1NA== 』*`,
+        unreg: `*★『${emoji.unreg} يـجـب ان تـكـون مـسـجـل لـي اسـتـعـمـال الامـر لـلـتـسـجـيـل اكـتـب .تسجيل ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『 https://www.instagram.com/hyouka_hotaro?igsh=MWFmc2dmdTllaTE1NA== 』*`,
+        nsfw: `*★『${emoji.nsfw} يـمنع استعـمال الامـر يـ』*\n*لـ دخـول جـروب دعـم الـبوت➱『 https://www.instagram.com/hyouka_hotaro?igsh=MWFmc2dmdTllaTE1NA== 』*`,
+        restrict: `*★『${emoji.restrict} تـم تـعـطـيـل الامـر مـن الـمـالـك يـ ${userTag}』*\n*لـ دخـول جـروب دعـم الـبوت ➱『  https://www.instagram.com/hyouka_hotaro?igsh=MWFmc2dmdTllaTE1NA==』*`,
     };
 
     const errorMessage = msg[type];
